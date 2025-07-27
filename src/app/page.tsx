@@ -17,6 +17,8 @@ export default function Home() {
           Score: {score}
         </p>
 
+        <img src="/gamePics/fake/0C3B3TQEHB.jpg"/>
+
         <div className="flex flex-row gap-5">
           <button className="px-15 py-10 bg-green-400 rounded-lg shadow-lg hover:bg-green-500">
             <p className="text-2xl font-bold"> Real </p>
