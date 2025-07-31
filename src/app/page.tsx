@@ -2,19 +2,37 @@
 import Image from "next/image";
 import { useState } from 'react';
 import { motion } from "motion/react";
+import { realPics } from "@/constants/reals";
+import { fakePics } from "@/constants/fakes";
 
 export default function Home() {
 
   const [score, setScore] = useState(0);
-  const [curIsReal, setCurIsReal] = useState(null);
-  const [curPic, setCurPic] = useState("/gamePics/fake/0E6C4CP8X0.jpg");
+  const [curIsReal, setCurIsReal] = useState(false);
+  const [curPic, setCurPic] = useState(fakePics[0]);
+  const numPics = 5;
+
+  function getNewPic() {
+    const choice = Math.floor(Math.random() * 2);
+    const picNum = Math.floor(Math.random() * numPics);
+
+    if (choice === 0) {
+      setCurIsReal(true);
+      setCurPic(realPics[picNum]);
+    } else {
+      setCurIsReal(false);
+      setCurPic(fakePics[picNum]);
+    }
+  }
 
   function checkGuess(guess: boolean) {
     if (guess === curIsReal) { // Correct
       setScore(prev => prev + 1);
     } else { // Incorrect
-
+      setScore(0);
     }
+
+    getNewPic();
   }
 
   return (
@@ -33,6 +51,7 @@ export default function Home() {
           <motion.button className="px-15 py-10 bg-green-400 rounded-lg shadow-lg hover:bg-green-500"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98, y: 2 }}
+            onClick={() => checkGuess(true)}
           >
             <p className="text-2xl font-bold"> Real </p>
           </motion.button>
@@ -40,6 +59,7 @@ export default function Home() {
           <motion.button className="px-15 py-10 bg-red-400 rounded-lg shadow-lg hover:bg-red-500"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98, y: 2 }}
+            onClick={() => checkGuess(false)}
           >
             <p className="text-2xl font-bold"> Fake </p>
           </motion.button>
