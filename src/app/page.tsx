@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import { useState } from 'react';
-
+import { motion } from "motion/react";
 
 export default function Home() {
 
@@ -17,16 +17,22 @@ export default function Home() {
           Score: {score}
         </p>
 
-        <img src="/gamePics/fake/0C3B3TQEHB.jpg"/>
+        <img src="/gamePics/fake/0E6C4CP8X0.jpg" className="rounded-lg" width={400} height={400}/>
 
         <div className="flex flex-row gap-5">
-          <button className="px-15 py-10 bg-green-400 rounded-lg shadow-lg hover:bg-green-500">
+          <motion.button className="px-15 py-10 bg-green-400 rounded-lg shadow-lg hover:bg-green-500"
+            whileHover={{ scale: 1.02, y: -2 }}
+            whileTap={{ scale: 0.98, y: 2 }}
+          >
             <p className="text-2xl font-bold"> Real </p>
-          </button>
+          </motion.button>
 
-          <button className="px-15 py-10 bg-red-400 rounded-lg shadow-lg hover:bg-red-500">
+          <motion.button className="px-15 py-10 bg-red-400 rounded-lg shadow-lg hover:bg-red-500"
+            whileHover={{ scale: 1.02, y: -2 }}
+            whileTap={{ scale: 0.98, y: 2 }}
+          >
             <p className="text-2xl font-bold"> Fake </p>
-          </button>
+          </motion.button>
         </div>
 
       </div>
