@@ -6,6 +6,16 @@ import { motion } from "motion/react";
 export default function Home() {
 
   const [score, setScore] = useState(0);
+  const [curIsReal, setCurIsReal] = useState(null);
+  const [curPic, setCurPic] = useState("/gamePics/fake/0E6C4CP8X0.jpg");
+
+  function checkGuess(guess: boolean) {
+    if (guess === curIsReal) { // Correct
+      setScore(prev => prev + 1);
+    } else { // Incorrect
+
+    }
+  }
 
   return (
     <div className="w-full bg-gray-100
@@ -17,7 +27,7 @@ export default function Home() {
           Score: {score}
         </p>
 
-        <img src="/gamePics/fake/0E6C4CP8X0.jpg" className="rounded-lg" width={400} height={400}/>
+        <img src={curPic} className="rounded-lg" width={400} height={400}/>
 
         <div className="flex flex-row gap-5">
           <motion.button className="px-15 py-10 bg-green-400 rounded-lg shadow-lg hover:bg-green-500"
