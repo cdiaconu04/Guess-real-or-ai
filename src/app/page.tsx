@@ -39,8 +39,11 @@ export default function Home() {
 
   function checkGuess(guess: boolean) {
     if (guess === curIsReal) { // Correct
-      setScore(prev => prev + 1);
-      if (score > highscore) setHighscore(score);
+      setScore(prev => {
+        const next = prev + 1;
+        setHighscore(h => Math.max(h, next));
+        return next;
+      });
     } else { // Incorrect
       setScore(0);
     }
